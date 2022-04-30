@@ -2,22 +2,30 @@ class BooksController < ApplicationController
 
   def show
     @book = Book.find(params[:id])
+    @book_new = Book.new
+    @user = @book.user
   end
 
   def index
     @books = Book.all
+    @user = current_user
   end
 
-  def create
-    @book = Book.new(book_params)
-    if @book.save
-      redirect_to book_path(@book.id), notice: "You have created book successfully."
-    else
-      @books = Book.all
+def create
+		@book = Book.new(book_params)
 
-      render 'index'
-    end
-  end
+        @book.user_id = current_user.id
+        #↑ ユーザーと投稿を紐づけるためのコード
+
+	    if @book.save
+        flash[:notice] = "You have creatad book successfully."
+		    redirect_to  book_path(@book.id)
+
+       else
+        @books = Book.all
+        render "index"
+      end
+	 end
 
   def edit
     @book = Book.find(params[:id])
@@ -32,15 +40,15 @@ class BooksController < ApplicationController
     end
   end
 
-  def delete
+  def destroy
     @book = Book.find(params[:id])
-    @book.destoy
+    @book.destroy
     redirect_to books_path
   end
 
-  private
+   private
 
-  def book_params
-    params.require(:book).permit(:title, :body)
-  end
+    def book_params
+        params.require(:book).permit(:title, :body)
+    end
 end
