@@ -2,6 +2,7 @@
   <thead>
     <tr>
       <th></th>
+      <th></th>
       <th>Title</th>
       <th>Opinion</th>
       <th colspan="3"></th>
@@ -24,6 +25,20 @@
         </td>
         <td><%= link_to book.title,book, class: "book_#{book.id}" %></td>
         <td><%= book.body %></td>
+        
+        <% if @book.favorite?(current_user) %>
+        <td>
+          <%= link_to favorite_create_path(@book.id), method: :delete do %>
+        <span style="color:red;">❤︎</span>
+        </td>
+        <% end %>
+       <% else %>
+       <td>
+        <%= link_to favorite_destroy_path(@book.id), method: :post do %>
+       <span>❤︎</span>
+     <% end %>
+     </td>
+    <% end %>
       </tr>
     <% end %>
   </tbody>

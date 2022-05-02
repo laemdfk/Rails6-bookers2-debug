@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!, except: [:top, :about]
   before_action :configure_permitted_parameters, if: :devise_controller?
-  before_filter :set_request_form
+  # before_action :set_request_form
   # 遷移前のページを保存しておくメソッド
 
   private
