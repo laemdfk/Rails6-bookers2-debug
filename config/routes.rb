@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'favorite/create'
+  get 'favorite/destroy'
   root to: "homes#top"
   # root :toをroot to:へ変更
   devise_for :users
