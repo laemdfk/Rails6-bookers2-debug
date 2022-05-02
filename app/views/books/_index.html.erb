@@ -25,21 +25,32 @@
         </td>
         <td><%= link_to book.title,book, class: "book_#{book.id}" %></td>
         <td><%= book.body %></td>
-        
-        <% if @book.favorite?(current_user) %>
         <td>
-          <%= link_to favorite_create_path(@book.id), method: :delete do %>
-        <span style="color:red;">❤︎</span>
-        </td>
-        <% end %>
-       <% else %>
-       <td>
-        <%= link_to favorite_destroy_path(@book.id), method: :post do %>
-       <span>❤︎</span>
-     <% end %>
-     </td>
+        <% if @book.favorite?(current_user) %>
+
+    <%= link_to favorite_destroy_path(@book.id), method: :delete do %>
+        <span style="color:red;">❤いいね︎</span>
     <% end %>
-      </tr>
+    </td>
+    <td>
+<% else %>
+
+    <%= link_to favorite_destroy_path(@book.id), method: :post do %>
+        <span style="color:blue;">❤いいね︎</span>
     <% end %>
-  </tbody>
+    </td>
+<% end %>
+         <!-- <p class="caption">-->
+         <!--  <%# if @book.favorite?(current_user) %>-->
+         <!--   <%#= link_to book_favorites_path(@book), method: :delete, class: "favorite_btn" do %>-->
+         <!--    ♥<%#= @book.favorites.count %> -->
+         <!--   <%# end %>-->
+         <!--  <%# else %>-->
+         <!--    <%#= link_to book_favorites_path(@book), method: :post, class: "favorite_btn" do %>-->
+         <!--    ♡<%#= @book.favorites.count %> ︎いいね-->
+         <!--  <%# end %>-->
+         <!-- <%# end %>-->
+         <!--</p>-->
+      </tbody>
+  <% end %>
 </table>
