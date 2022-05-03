@@ -1,11 +1,18 @@
 Rails.application.routes.draw do
 
+  get 'favorite/create'
+  get 'favorite/destroy'
   root to: "homes#top"
   # root :toをroot to:へ変更
   devise_for :users
   get "home/about"=>"homes#about"
 
-  resources :books, only: [:index,:show,:edit,:create,:destroy,:update]
+  resources :books do
+   resource :book_comment, only: [:create, :destroy]
+   resource :favorites, only: [:create, :destroy]
+ end
+
+
   resources :users, only: [:index,:show,:edit,:update]
 
 
