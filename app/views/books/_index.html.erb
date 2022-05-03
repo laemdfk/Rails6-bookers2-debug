@@ -39,18 +39,9 @@
         <span style="color:blue;">❤いいね︎</span>
     <% end %>
     </td>
-<% end %>
-         <!-- <p class="caption">-->
-         <!--  <%# if @book.favorite?(current_user) %>-->
-         <!--   <%#= link_to book_favorites_path(@book), method: :delete, class: "favorite_btn" do %>-->
-         <!--    ♥<%#= @book.favorites.count %> -->
-         <!--   <%# end %>-->
-         <!--  <%# else %>-->
-         <!--    <%#= link_to book_favorites_path(@book), method: :post, class: "favorite_btn" do %>-->
-         <!--    ♡<%#= @book.favorites.count %> ︎いいね-->
-         <!--  <%# end %>-->
-         <!-- <%# end %>-->
-         <!--</p>-->
+    <td><p class="caption"><%= "#{book.committed!} コメント" %></p></td>
+    <% end %>
+    
       </tbody>
   <% end %>
 </table>
