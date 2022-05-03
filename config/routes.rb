@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'book_comments/create'
+  get 'book_comments/destroy'
   get 'favorite/create'
   get 'favorite/destroy'
   root to: "homes#top"
