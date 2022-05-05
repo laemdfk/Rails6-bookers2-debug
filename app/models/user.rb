@@ -8,17 +8,17 @@ class User < ApplicationRecord
 
 # いいね機能のアソシエーション
   has_many :favorite, dependent: :destroy
-  
+
 # コメント機能のアソシエーション
   has_many :book_comment, dependent: :destroy
 
 
 # フォロー・フォロワー機能のアソシエーション
-  has_many :follower,class_name:"Relationship",foreign_key:"follower_id",dependent: :destroy
-  has_many :followed,class_name:"Relationship",foreign_key:"followed_id",dependent: :destroy
+ has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
+ has_many :relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
 
-  has_many :following_user,through: :follower,source:followed
-  has_many :follower_user,through: :followed,source:follower
+has_many :followings, through: :relationships, source: :followed
+has_many :followers, through: :relationships, source: :follower
 
 
   def follow(user_id)
