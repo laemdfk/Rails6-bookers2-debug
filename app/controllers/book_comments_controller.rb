@@ -3,7 +3,7 @@ class BookCommentsController < ApplicationController
    book_comment = Book.find(params[:book_id])
    book_comment = current_user.book_comment.new(book_id: book.id)
    book_comment.save
-   redirect_to book_path(book)
+   redirect_to request.referer
     # @book_favorite = Favorite.new(user_id: current_user.id, book_id: params[:book_id])
 
     # @book_favorite.save?
@@ -12,13 +12,12 @@ class BookCommentsController < ApplicationController
   end
 
   def destroy
-   book_comment = Book.find(params[:book_id])
-   book_comment = current_user.book_comment.find_by(book_id: book.id)
-   book_comment.destroy
-   redirect_to book_path(book)
-    # @book_favorite = Favorite.find_by(user_id: current_user.id, book_id: params[:book_id])
+    BookComment.find(params[:id])
+    redirect_to request.referer
+  end
 
-    # @book_favorite.destroy
-    # redirect_to back
+  private
+  def book_comment_params
+    params.require(:book_comment).permit(:comment)
   end
 end
