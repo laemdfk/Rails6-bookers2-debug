@@ -37,9 +37,8 @@
      <% end %>
      </td>
      <td>
-        <p class="caption"><%= "#{@book.committed!} コメント" %></p>
-          <%# @comments.each do |comment| %>
-          <%#= @book_comment.user.name %>
+        <td>コメント数: <%= @book.book_comments.count %></td>
+          <td><%= render "favorites/btn", book: @book %></td>
           <div class="d-flex">
             <%#= @book_comment.comment %>
             <%# if @book_comment.user == current_user %>

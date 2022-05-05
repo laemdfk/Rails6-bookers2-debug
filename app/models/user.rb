@@ -6,9 +6,14 @@ class User < ApplicationRecord
 
   has_many :books, dependent: :destroy
 
+# いいね機能のアソシエーション
   has_many :favorite, dependent: :destroy
+  
+# コメント機能のアソシエーション
   has_many :book_comment, dependent: :destroy
 
+
+# フォロー・フォロワー機能のアソシエーション
   has_many :follower,class_name:"Relationship",foreign_key:"follower_id",dependent: :destroy
   has_many :followed,class_name:"Relationship",foreign_key:"followed_id",dependent: :destroy
 
@@ -29,11 +34,14 @@ class User < ApplicationRecord
   end
 
 
-  has_one_attached :profile_image
-
-
+# 名前のバリデーション
   validates :name, length: { minimum: 2, maximum: 20 }, uniqueness: true
 
+# 写真の表示についてのコード
+  has_one_attached :profile_image
 
+  def get_profile_image
+    (profile_image.attached?) ? profile_image : 'no_image.jpg'
+  end
   # profile_image.variant(resize_to_limit: [width, height]).processed
 end
