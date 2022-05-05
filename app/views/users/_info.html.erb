@@ -9,15 +9,22 @@
        </td>
       </tr>
   <tr>
-    <%#= image_tag user.profile_image, size:'100x100' %>
-    </tr>
-  <tr>
 	  <th>name</th>
 	  <th><%= @user.name %></th>
   </tr>
   <tr>
 	  <th>introduction</th>
 	  <th><%= @user.introduction %></th>
+	</tr>
+	
+	<tr>
+	 <th>followes</th>
+   <th><%#= link_to "followes", user_followers_path %></th>
+  </tr>
+    
+  <tr>
+   <th>followers</th>
+   <th><%#= link_to"followers",user_followings_path %></th>
   </tr>
 </table>
 
