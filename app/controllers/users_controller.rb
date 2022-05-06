@@ -5,8 +5,8 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @books = @user.books
     @book = Book.new
-    followings = @user.followings
-    folloewer = @user.followers
+    # followings = @user.followings
+    # folloewer = @user.followers
   end
 
   def index
