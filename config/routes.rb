@@ -17,6 +17,7 @@ Rails.application.routes.draw do
    resource :relationship,only:[:create, :destroy]
  end
 
+ get "search" => "searches#search"
 
 # endを追加し、ルーティングの順番変更
 end
