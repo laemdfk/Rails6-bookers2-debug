@@ -38,13 +38,15 @@ has_many :followings, through: :elatiobships,source: :followed
   end
 
   def following?(user)
-    following_user.include?(user)
+    followings.include?(user)
   end
 
 
-# 名前のバリデーション
+# 名前と自己紹介のバリデーション
   validates :name, length: { minimum: 2, maximum: 20 }, uniqueness: true
-
+   validates :introduction, length: { maximum: 50 }
+  
+  
 
 # 写真の表示についてのコード
   has_one_attached :profile_image
@@ -55,5 +57,17 @@ has_many :followings, through: :elatiobships,source: :followed
   # profile_image.variant(resize_to_limit: [width, height]).processed
   
 # 検索機能についての定義
-
+ def self.looks(search, word)
+    if search == "perfect_match"
+      @user = User.where("name LIKE?", "#{word}")
+    elsif search == "forward_match"
+      @user = User.where("name LIKE?","#{word}%")
+    elsif search == "backward_match"
+      @user = User.where("name LIKE?","%#{word}")
+    elsif search == "partial_match"
+      @user = User.where("name LIKE?","%#{word}%")
+    else
+      @user = User.all
+    end
+ end
 end
