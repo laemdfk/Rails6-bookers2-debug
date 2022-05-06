@@ -1,7 +1,7 @@
 class BookCommentsController < ApplicationController
   def create
-   book_comment = Book.find(params[:book_id])
-   book_comment = current_user.book_comment.new(book_id: book.id)
+   book = Book.find(params[:book_id])
+   book_comment = current_user.book_comments.new(book_comment_params)
    book_comment.save
    redirect_to request.referer
     # @book_favorite = Favorite.new(user_id: current_user.id, book_id: params[:book_id])

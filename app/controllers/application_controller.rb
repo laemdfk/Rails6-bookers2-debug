@@ -15,13 +15,13 @@ class ApplicationController < ActionController::Base
   end
 
 # 前のページに戻れるようにするためのアクション
- def set_request_from
-   if request.referer
-     redirect_to :back and return true
-   elsif @request_from
-    redirect_to @request_from and return true 
-   end
- end
+ # def set_request_from
+ #   if request.referer
+ #     redirect_to :back and return true
+ #   elsif @request_from
+ #    redirect_to @request_from and return true 
+ #   end
+ # end
  
  
 

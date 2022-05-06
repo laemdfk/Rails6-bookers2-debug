@@ -37,6 +37,7 @@ has_many :followers, through: :relationships, source: :follower
 # 名前のバリデーション
   validates :name, length: { minimum: 2, maximum: 20 }, uniqueness: true
 
+
 # 写真の表示についてのコード
   has_one_attached :profile_image
 
