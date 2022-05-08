@@ -54,10 +54,13 @@ def create
    private
 
     def book_params
-        params.require(:book).permit(:title, :body)
+        params.require(:book).permit(:title, :body, :book_id)
     end
     
-    # def book_comment_params
-    # params.require(:book_comment).permit(:body)
-    # end
+  def ensure_correct_user
+    @book = Book.find(params[:id])
+    unless @book.user == current_user
+      redirect_to books_path
+    end
+  end
 end

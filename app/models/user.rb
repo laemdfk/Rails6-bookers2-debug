@@ -4,13 +4,13 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :books, dependent: :destroy
+  has_many :books
 
 # いいね機能のアソシエーション
-  has_many :favorite, dependent: :destroy
+  has_many :favorites, dependent: :destroy
 
 # コメント機能のアソシエーション
-  has_many :book_comment, dependent: :destroy
+  has_many :book_comments, dependent: :destroy
 
 
 # フォロー・フォロワー機能のアソシエーション
