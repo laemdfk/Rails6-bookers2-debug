@@ -11,7 +11,7 @@
       <%= render 'layouts/search' %>
       <h2>Books</h2>
       <%= render 'index', books: @books%>
-      <%= render 'favorites/btn',book: @book %>
+       <div class= "likes_buttons_<%#= @book.id %>"><%#= render "favorites/btn", book: @book %></div>
     </div>
   </div>
 </div>
