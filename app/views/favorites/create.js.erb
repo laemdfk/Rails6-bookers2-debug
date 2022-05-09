@@ -1,3 +1,1 @@
-('#book').html("<%= j(render 'favorite/btn', book: @book) %>");
-("text_area").val("");
-("#text").val("");
+$('#favorite_buttons_<%= @book.id %>').html("<%= j(render "favorites/btn", book: @book) %>");
