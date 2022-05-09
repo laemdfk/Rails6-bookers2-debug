@@ -12,7 +12,7 @@ class Book < ApplicationRecord
   end
 
 # 検索機能の定義
- def self.looks(search, word)
+ def self.search_for(search, word)
     if search == "perfect_match"
       @book = Book.where("title LIKE?", "#{word}")
     elsif search == "forward_match"
